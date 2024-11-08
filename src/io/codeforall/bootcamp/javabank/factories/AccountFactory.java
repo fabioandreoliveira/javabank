@@ -1,9 +1,9 @@
 package io.codeforall.bootcamp.javabank.factories;
 
-import io.codeforall.bootcamp.javabank.domain.account.Account;
-import io.codeforall.bootcamp.javabank.domain.account.AccountType;
-import io.codeforall.bootcamp.javabank.domain.account.CheckingAccount;
-import io.codeforall.bootcamp.javabank.domain.account.SavingsAccount;
+import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.model.account.AccountType;
+import io.codeforall.bootcamp.javabank.model.account.CheckingAccount;
+import io.codeforall.bootcamp.javabank.model.account.SavingsAccount;
 
 /**
  * A factory for creating accounts of different types

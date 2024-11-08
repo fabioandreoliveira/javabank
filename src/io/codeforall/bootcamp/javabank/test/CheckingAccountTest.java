@@ -1,7 +1,8 @@
 package io.codeforall.bootcamp.javabank.test;
 
-import io.codeforall.bootcamp.javabank.domain.account.Account;
-import io.codeforall.bootcamp.javabank.domain.account.CheckingAccount;
+
+import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.model.account.CheckingAccount;
 
 public class CheckingAccountTest {
 

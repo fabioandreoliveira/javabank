@@ -1,26 +1,26 @@
 package io.codeforall.bootcamp.javabank;
 
-import io.codeforall.bootcamp.javabank.application.BankApplication;
-import io.codeforall.bootcamp.javabank.domain.Bank;
-import io.codeforall.bootcamp.javabank.domain.Customer;
-import io.codeforall.bootcamp.javabank.managers.AccountManager;
+import io.codeforall.bootcamp.javabank.controller.LoginController;
+import io.codeforall.bootcamp.javabank.model.Bank;
 
 public class App {
 
+    private Bank bank;
+
     public static void main(String[] args) {
 
-        Bank bank = new Bank();
-        AccountManager accountManager = new AccountManager();
-        bank.setAccountManager(accountManager);
+        App app = new App();
+        app.bootStrap();
+    }
 
-        Customer c1 = new Customer(1, "Rui");
-        Customer c2 = new Customer(2, "Sergio");
-        Customer c3 = new Customer(3, "Bruno");
-        bank.addCustomer(c1);
-        bank.addCustomer(c2);
-        bank.addCustomer(c3);
+    private void bootStrap() {
 
-        BankApplication bankApplication = new BankApplication(bank);
-        bankApplication.start();
+        Bootstrap bootstrap = new Bootstrap();
+        bank = bootstrap.generateTestData();
+
+        LoginController loginController = bootstrap.wireObjects(bank);
+
+        // start application
+        loginController.init();
     }
 }

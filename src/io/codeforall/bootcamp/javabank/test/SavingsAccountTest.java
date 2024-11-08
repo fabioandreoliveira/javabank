@@ -1,7 +1,7 @@
 package io.codeforall.bootcamp.javabank.test;
 
-import io.codeforall.bootcamp.javabank.domain.account.Account;
-import io.codeforall.bootcamp.javabank.domain.account.SavingsAccount;
+import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.model.account.SavingsAccount;
 
 public class SavingsAccountTest {
 

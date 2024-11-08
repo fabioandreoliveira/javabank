@@ -1,9 +1,9 @@
 package io.codeforall.bootcamp.javabank.test;
 
-import io.codeforall.bootcamp.javabank.domain.account.Account;
-import io.codeforall.bootcamp.javabank.domain.account.AccountType;
-import io.codeforall.bootcamp.javabank.domain.account.SavingsAccount;
 import io.codeforall.bootcamp.javabank.managers.AccountManager;
+import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.model.account.AccountType;
+import io.codeforall.bootcamp.javabank.model.account.SavingsAccount;
 
 public class AccountManagerTest {
 
@@ -20,13 +20,13 @@ public class AccountManagerTest {
             return false;
         }
 
-        // should be able to withdraw from checking account
+        // should be able to withdraw
         accountManager.withdraw(ac.getId(), 1);
         if (ac.getBalance() != 9) {
             return false;
         }
 
-        // should not be able to withdraw from saving account
+        // should not be able to withdraw
         accountManager.withdraw(as.getId(), 30);
         if (as.getBalance() != 110) {
             return false;

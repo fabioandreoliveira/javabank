@@ -1,9 +1,10 @@
 package io.codeforall.bootcamp.javabank.test;
 
-import io.codeforall.bootcamp.javabank.domain.Customer;
-import io.codeforall.bootcamp.javabank.domain.account.AccountType;
-import io.codeforall.bootcamp.javabank.domain.account.SavingsAccount;
 import io.codeforall.bootcamp.javabank.managers.AccountManager;
+import io.codeforall.bootcamp.javabank.model.Customer;
+import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.model.account.AccountType;
+import io.codeforall.bootcamp.javabank.model.account.SavingsAccount;
 
 public class CustomerTest {
 
@@ -11,7 +12,6 @@ public class CustomerTest {
 
         AccountManager accountManager = new AccountManager();
         Customer customer = new Customer(1, "Rui");
-        customer.setAccountManager(accountManager);
 
         // customer should not contain any accounts
         if (customer.getAccountIds().size() != 0) {
@@ -19,17 +19,19 @@ public class CustomerTest {
         }
 
         // should be able to open accounts
-        int ac = customer.openAccount(AccountType.CHECKING);
-        int as = customer.openAccount(AccountType.SAVINGS);
+        Account ac = accountManager.openAccount(AccountType.CHECKING);
+        Account as = accountManager.openAccount(AccountType.SAVINGS);
+        customer.addAccount(ac);
+        customer.addAccount(as);
 
         if (customer.getAccountIds().size() != 2) {
             return false;
         }
 
         // customer should be able to get the balance of each individual account
-        accountManager.deposit(ac, 100);
-        accountManager.deposit(as, SavingsAccount.MIN_BALANCE + 100);
-        if (customer.getBalance(ac) != 100 || customer.getBalance(as) != SavingsAccount.MIN_BALANCE + 100) {
+        accountManager.deposit(ac.getId(), 100);
+        accountManager.deposit(as.getId(), SavingsAccount.MIN_BALANCE + 100);
+        if (customer.getBalance(ac.getId()) != 100 || customer.getBalance(as.getId()) != SavingsAccount.MIN_BALANCE + 100) {
             return false;
         }
 

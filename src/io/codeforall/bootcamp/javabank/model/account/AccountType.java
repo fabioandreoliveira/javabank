@@ -1,4 +1,4 @@
-package io.codeforall.bootcamp.javabank.domain.account;
+package io.codeforall.bootcamp.javabank.model.account;
 
 /**
  * The possible {@link Account} types

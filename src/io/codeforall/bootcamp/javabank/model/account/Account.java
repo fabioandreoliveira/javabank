@@ -1,8 +1,8 @@
-package io.codeforall.bootcamp.javabank.domain.account;
+package io.codeforall.bootcamp.javabank.model.account;
 
 /**
  * Common interface for bank accounts, provides methods to access account
- * information and perform account transactions.
+ * information and perform account transactions
  */
 public interface Account {
 
@@ -65,5 +65,4 @@ public interface Account {
      * @return {@code true} if withdraw can be done
      */
     boolean canWithdraw();
-
 }

@@ -1,4 +1,4 @@
-package io.codeforall.bootcamp.javabank.domain.account;
+package io.codeforall.bootcamp.javabank.model.account;
 
 /**
  * A checking account with no restrictions
@@ -23,5 +23,4 @@ public class CheckingAccount extends AbstractAccount {
     public AccountType getAccountType() {
         return AccountType.CHECKING;
     }
-
 }
