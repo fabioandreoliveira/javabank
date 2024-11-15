@@ -18,4 +18,18 @@ public interface Model {
      * @param id the id to set
      */
     void setId(Integer id);
+
+    /**
+     * Gets the model version
+     *
+     * @return the model version
+     */
+    Integer getVersion();
+
+    /**
+     * Sets the model version
+     *
+     * @param version the version to set
+     */
+    void setVersion(Integer version);
 }

@@ -1,6 +1,7 @@
 package io.codeforall.bootcamp.javabank.services;
 
 import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.services.mock.MockAccountService;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,13 +9,13 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 
-public class AccountServiceImplTest {
+public class MockAccountServiceTest {
 
     private AccountService accountService;
 
     @Before
     public void setup() {
-        accountService = new AccountServiceImpl();
+        accountService = new MockAccountService();
     }
 
     @Test

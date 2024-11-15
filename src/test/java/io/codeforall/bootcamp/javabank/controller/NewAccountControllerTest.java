@@ -1,12 +1,12 @@
 package io.codeforall.bootcamp.javabank.controller;
 
-import io.codeforall.bootcamp.javabank.view.View;
 import io.codeforall.bootcamp.javabank.factories.AccountFactory;
 import io.codeforall.bootcamp.javabank.model.Customer;
 import io.codeforall.bootcamp.javabank.model.account.Account;
 import io.codeforall.bootcamp.javabank.model.account.AccountType;
 import io.codeforall.bootcamp.javabank.services.AccountService;
 import io.codeforall.bootcamp.javabank.services.AuthService;
+import io.codeforall.bootcamp.javabank.view.View;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,10 +37,10 @@ public class NewAccountControllerTest {
         when(authService.getAccessingCustomer()).thenReturn(customer);
 
         // wire them all
-        newAccountController.setAccountFactory(accountFactory);
         newAccountController.setAccountService(accountService);
         newAccountController.setAuthService(authService);
         newAccountController.setView(view);
+        newAccountController.setAccountFactory(accountFactory);
 
     }
 

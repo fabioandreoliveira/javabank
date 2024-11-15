@@ -1,6 +1,7 @@
-package io.codeforall.bootcamp.javabank.services;
+package io.codeforall.bootcamp.javabank.services.mock;
 
 import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.services.AccountService;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -9,7 +10,7 @@ import java.util.Map;
 /**
  * An {@link AccountService} implementation
  */
-public class AccountServiceImpl implements AccountService {
+public class MockAccountService implements AccountService {
 
     private Map<Integer, Account> accountMap = new HashMap<>();
 
@@ -20,6 +21,11 @@ public class AccountServiceImpl implements AccountService {
      */
     private Integer getNextId() {
         return accountMap.isEmpty() ? 1 : Collections.max(accountMap.keySet()) + 1;
+    }
+
+    @Override
+    public Account get(Integer id) {
+        return accountMap.get(id);
     }
 
     /**

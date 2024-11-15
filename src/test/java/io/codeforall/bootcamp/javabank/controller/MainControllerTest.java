@@ -1,9 +1,9 @@
 package io.codeforall.bootcamp.javabank.controller;
 
-import io.codeforall.bootcamp.javabank.view.View;
 import io.codeforall.bootcamp.javabank.model.Customer;
 import io.codeforall.bootcamp.javabank.services.AuthService;
 import io.codeforall.bootcamp.javabank.view.UserOptions;
+import io.codeforall.bootcamp.javabank.view.View;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -99,7 +99,7 @@ public class MainControllerTest {
 
         // setup a fake accessing customer
         String name = "Rui";
-        when(customer.getName()).thenReturn(name);
+        when(customer.getFirstName()).thenReturn(name);
         when(authService.getAccessingCustomer()).thenReturn(customer);
 
         assertEquals(mainController.getCustomerName(), name);

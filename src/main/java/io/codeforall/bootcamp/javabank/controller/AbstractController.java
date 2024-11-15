@@ -1,7 +1,7 @@
 package io.codeforall.bootcamp.javabank.controller;
 
-import io.codeforall.bootcamp.javabank.view.View;
 import io.codeforall.bootcamp.javabank.services.AuthService;
+import io.codeforall.bootcamp.javabank.view.View;
 
 /**
  * A generic controller to be used as a base for concrete controller implementations

@@ -6,6 +6,7 @@ package io.codeforall.bootcamp.javabank.model;
 public abstract class AbstractModel implements Model {
 
     private Integer id;
+    private Integer version;
 
     /**
      * @see Model#getId()
@@ -21,5 +22,21 @@ public abstract class AbstractModel implements Model {
     @Override
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    /**
+     * @see Model#getVersion()
+     */
+    @Override
+    public Integer getVersion() {
+        return version;
+    }
+
+    /**
+     * @see Model#setVersion(Integer)
+     */
+    @Override
+    public void setVersion(Integer version) {
+        this.version = version;
     }
 }
