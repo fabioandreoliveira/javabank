@@ -2,7 +2,7 @@ package io.codeforall.bootcamp.javabank;
 
 import io.codeforall.bootcamp.javabank.controller.Controller;
 import io.codeforall.bootcamp.javabank.factories.AccountFactory;
-import io.codeforall.bootcamp.javabank.persistence.ConnectionManager;
+import io.codeforall.bootcamp.javabank.persistence.jdbc.JDBCSessionManager;
 import io.codeforall.bootcamp.javabank.services.AuthServiceImpl;
 import io.codeforall.bootcamp.javabank.services.jdbc.JdbcAccountService;
 import io.codeforall.bootcamp.javabank.services.jdbc.JdbcCustomerService;
@@ -17,7 +17,7 @@ public class App {
 
     private void bootStrap() {
 
-        ConnectionManager connectionManager = new ConnectionManager();
+        JDBCSessionManager connectionManager = new JDBCSessionManager();
 
         AccountFactory accountFactory = new AccountFactory();
         JdbcAccountService accountService = new JdbcAccountService(connectionManager, accountFactory);

@@ -1,6 +1,6 @@
 package io.codeforall.bootcamp.javabank.services.jdbc;
 
-import io.codeforall.bootcamp.javabank.persistence.ConnectionManager;
+import io.codeforall.bootcamp.javabank.persistence.jdbc.JDBCSessionManager;
 import io.codeforall.bootcamp.javabank.model.Customer;
 import io.codeforall.bootcamp.javabank.model.account.Account;
 import io.codeforall.bootcamp.javabank.services.AccountService;
@@ -12,9 +12,9 @@ import java.util.*;
 public class JdbcCustomerService implements CustomerService {
 
     private AccountService accountService;
-    private ConnectionManager connectionManager;
+    private JDBCSessionManager connectionManager;
 
-    public JdbcCustomerService(ConnectionManager connectionManager) {
+    public JdbcCustomerService(JDBCSessionManager connectionManager) {
         this.connectionManager = connectionManager;
     }
 

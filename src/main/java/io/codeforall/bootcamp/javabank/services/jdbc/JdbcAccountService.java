@@ -1,7 +1,7 @@
 package io.codeforall.bootcamp.javabank.services.jdbc;
 
 import io.codeforall.bootcamp.javabank.factories.AccountFactory;
-import io.codeforall.bootcamp.javabank.persistence.ConnectionManager;
+import io.codeforall.bootcamp.javabank.persistence.jdbc.JDBCSessionManager;
 import io.codeforall.bootcamp.javabank.model.account.Account;
 import io.codeforall.bootcamp.javabank.model.account.AccountType;
 import io.codeforall.bootcamp.javabank.services.AccountService;
@@ -10,10 +10,10 @@ import java.sql.*;
 
 public class JdbcAccountService implements AccountService {
 
-    private ConnectionManager connectionManager;
+    private JDBCSessionManager connectionManager;
     private AccountFactory accountFactory;
 
-    public JdbcAccountService(ConnectionManager connectionManager, AccountFactory accountFactory) {
+    public JdbcAccountService(JDBCSessionManager connectionManager, AccountFactory accountFactory) {
         this.connectionManager = connectionManager;
         this.accountFactory = accountFactory;
     }
