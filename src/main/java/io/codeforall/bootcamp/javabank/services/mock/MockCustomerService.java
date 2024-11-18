@@ -1,8 +1,8 @@
 package io.codeforall.bootcamp.javabank.services.mock;
 
+import io.codeforall.bootcamp.javabank.services.CustomerService;
 import io.codeforall.bootcamp.javabank.model.Customer;
 import io.codeforall.bootcamp.javabank.model.account.Account;
-import io.codeforall.bootcamp.javabank.services.CustomerService;
 
 import java.util.*;
 

@@ -1,14 +1,13 @@
 package io.codeforall.bootcamp.javabank;
 
 import io.codeforall.bootcamp.javabank.controller.*;
-import io.codeforall.bootcamp.javabank.view.*;
-import org.academiadecodigo.bootcamp.Prompt;
 import io.codeforall.bootcamp.javabank.controller.transaction.DepositController;
 import io.codeforall.bootcamp.javabank.controller.transaction.WithdrawalController;
-import io.codeforall.bootcamp.javabank.factories.AccountFactory;
 import io.codeforall.bootcamp.javabank.services.AccountService;
-import io.codeforall.bootcamp.javabank.services.CustomerService;
 import io.codeforall.bootcamp.javabank.services.AuthServiceImpl;
+import io.codeforall.bootcamp.javabank.services.CustomerService;
+import io.codeforall.bootcamp.javabank.view.*;
+import org.academiadecodigo.bootcamp.Prompt;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,7 +19,6 @@ public class Bootstrap {
     private AuthServiceImpl authService;
     private CustomerService customerService;
     private AccountService accountService;
-    private AccountFactory accountFactory;
 
     /**
      * Sets the authentication service
@@ -49,14 +47,6 @@ public class Bootstrap {
         this.accountService = accountService;
     }
 
-    /**
-     * Sets the account factory
-     *
-     * @param accountFactory
-     */
-    public void setAccountFactory(AccountFactory accountFactory) {
-        this.accountFactory = accountFactory;
-    }
 
     /**
      * Wires the necessary object dependencies
@@ -99,7 +89,6 @@ public class Bootstrap {
         // wire new account controller and view
         NewAccountView newAccountView = new NewAccountView();
         NewAccountController newAccountController = new NewAccountController();
-        newAccountController.setAccountFactory(accountFactory);
         newAccountController.setAccountService(accountService);
         newAccountController.setAuthService(authService);
         newAccountController.setView(newAccountView);

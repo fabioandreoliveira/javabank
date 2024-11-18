@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.codeforall.bootcamp.javabank</groupId>
-    <artifactId>javabank-step5-jdbc</artifactId>
+    <artifactId>javabank-step06-enterprise-architecture</artifactId>
     <version>0.0.1</version>
 
     <properties>
