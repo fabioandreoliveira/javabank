@@ -2,10 +2,15 @@ package io.codeforall.bootcamp.javabank.model.account;
 
 import io.codeforall.bootcamp.javabank.model.AbstractModel;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * A generic account model entity to be used as a base for concrete types of accounts
  * @see Account
  */
+@Entity
+@Table(name = "account")
 public abstract class AbstractAccount extends AbstractModel implements Account {
 
     private double balance = 0;

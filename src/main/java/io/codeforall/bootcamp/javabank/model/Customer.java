@@ -1,21 +1,36 @@
 package io.codeforall.bootcamp.javabank.model;
 
+import io.codeforall.bootcamp.javabank.model.account.AbstractAccount;
 import io.codeforall.bootcamp.javabank.model.account.Account;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * The customer model entity
  */
+@Entity
+@Table(name = "customer")
 public class Customer extends AbstractModel {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer Id;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
 
-    private List<Account> accounts = new ArrayList<>();
+    @OneToMany(
+            targetEntity = AbstractAccount.class,
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true,
+            // use Category foreign key on Product table to establish
+            // the many-to-one relationship instead of a join table
+            mappedBy = "customer"
+    )
+    private List<AbstractAccount> accounts = new ArrayList<>();
 
     /**
      * Gets the firstName of the customer
@@ -57,6 +72,16 @@ public class Customer extends AbstractModel {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public Integer getId() {
+        return Id;
+    }
+
+    @Override
+    public void setId(Integer id) {
+        Id = id;
     }
 
     /**
