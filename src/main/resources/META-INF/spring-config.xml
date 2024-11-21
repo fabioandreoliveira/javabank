@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+
+<util:constant id="stdin" static-field="java.lang.System.in"/>
+<util:constant id="stdout" static-field="java.lang.System.out"/>
+
+<bean id="prompt" class="org.academiadecodigo.bootcamp.Prompt">
+<constructor-arg name="input" ref="stdin"/>
+<constructor-arg name="output" ref="stdout"/>
+</bean>
+
+        <!-- Enable support for JPA annotations -->
+<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+        <!-- c3p0 database connection pool management -->
+<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+
+<property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
+<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/javabank?useSSL=false"/>
+<property name="user" value="root"/>
+<property name="password" value=""/>
+
+<!-- c3p0 database connection pool management properties -->
+<property name="minPoolSize" value="1"/>
+<property name="maxPoolSize" value="10"/>
+<property name="acquireIncrement" value="1"/>
+<property name="maxStatements" value="0"/>
+
+<!-- destroy idle pool after 300ms -->
+<property name="idleConnectionTestPeriod" value="300"/>
+
+<!-- destroy db connection if it fails to login after 7200ms -->
+<property name="loginTimeout" value="7200"/>
+
+</bean>
+
+<bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+
+<property name="dataSource" ref="dataSource"/>
+<property name="packagesToScan" value="io.codeforall.bootcamp.javabank.model"/>
+<property name="jpaVendorAdapter">
+    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+</property>
+<property name="jpaProperties">
+    <map>
+        <entry key="hibernate.show_sql" value="true" />
+        <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+        <!-- Validate database schema, data loss can occur if set to create or update -->
+        <entry key="hibernate.hbm2ddl.auto" value="create"/>
+    </map>
+</property>
+</bean>
+    <!--Services -->
+
+    <bean id="AuthServiceImpl" class="io.codeforall.bootcamp.javabank.services.AuthServiceImpl">
+        <property name="customerService" ref="customerService"/>
+    </bean>
+
+    <bean id="customerService" class="io.codeforall.bootcamp.javabank.services.CustomerServiceImpl">
+        <property name="customerDao" ref="customerDao"/>
+        <property name="tx" ref="jpatransactionmanager"/>
+    </bean>
+
+    <bean id="accountservice" class="io.codeforall.bootcamp.javabank.services.AccountServiceImpl">
+        <property name="accountDao" ref="accountDao"/>
+        <property name="tx" ref="jpatransactionmanager"/>
+    </bean>
+
+    <!--Daos -->
+
+    <bean id="customerDao" class="io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao">
+        <constructor-arg name="sm" ref="jpasessionmanager"/>
+    </bean>
+    <bean id="accountDao" class="io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaAccountDao">
+        <constructor-arg name="sm" ref="jpasessionmanager"/>
+    </bean>
+
+    <!--Managers -->
+
+    <bean id="jpasessionmanager" class="io.codeforall.bootcamp.javabank.persistence.jpa.JpaSessionManager">
+        <constructor-arg name="emf" ref="emFactory"/>
+    </bean>
+
+    <bean id="jpatransactionmanager" class="io.codeforall.bootcamp.javabank.persistence.jpa.JpaTransactionManager">
+        <constructor-arg name="sm" ref="jpasessionmanager"/>
+    </bean>
+
+</beans>

@@ -10,12 +10,16 @@ import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaAccountDao;
 import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao;
 import io.codeforall.bootcamp.javabank.persistence.jpa.JpaSessionManager;
 import io.codeforall.bootcamp.javabank.persistence.jpa.JpaTransactionManager;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.persistence.EntityManagerFactory;
 
 public class App {
 
     public static void main(String[] args) {
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("META-INF/spring-config.xml");
 
         JpaBootstrap jpa = new JpaBootstrap();
         EntityManagerFactory emf = jpa.start();
