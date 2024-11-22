@@ -89,4 +89,8 @@
         <constructor-arg name="sm" ref="jpasessionmanager"/>
     </bean>
 
+    <bean id="loginController" class="io.codeforall.bootcamp.javabank.controller.LoginController">
+        <property name="loginView" ref="loginView"/>
+    </bean>
+
 </beans>
