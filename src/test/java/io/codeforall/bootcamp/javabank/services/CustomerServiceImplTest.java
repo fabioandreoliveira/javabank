@@ -1,9 +1,9 @@
 package io.codeforall.bootcamp.javabank.services;
 
-import io.codeforall.bootcamp.javabank.model.Customer;
-import io.codeforall.bootcamp.javabank.model.Recipient;
-import io.codeforall.bootcamp.javabank.model.account.Account;
-import io.codeforall.bootcamp.javabank.model.account.CheckingAccount;
+import io.codeforall.bootcamp.javabank.persistence.model.Customer;
+import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
+import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
+import io.codeforall.bootcamp.javabank.persistence.model.account.CheckingAccount;
 import io.codeforall.bootcamp.javabank.persistence.TransactionException;
 import io.codeforall.bootcamp.javabank.persistence.TransactionManager;
 import io.codeforall.bootcamp.javabank.persistence.dao.CustomerDao;
@@ -151,7 +151,7 @@ public class CustomerServiceImplTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testGetCustomerAccountIdsInvalidId() {
+    public void testListCustomerAccountIdsInvalidId() {
 
         // setup
         when(customerDao.findById(anyInt())).thenReturn(null);

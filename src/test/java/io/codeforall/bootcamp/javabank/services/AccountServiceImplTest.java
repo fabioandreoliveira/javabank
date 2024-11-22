@@ -1,8 +1,8 @@
 package io.codeforall.bootcamp.javabank.services;
 
-import io.codeforall.bootcamp.javabank.model.account.Account;
-import io.codeforall.bootcamp.javabank.model.account.CheckingAccount;
-import io.codeforall.bootcamp.javabank.model.account.SavingsAccount;
+import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
+import io.codeforall.bootcamp.javabank.persistence.model.account.CheckingAccount;
+import io.codeforall.bootcamp.javabank.persistence.model.account.SavingsAccount;
 import io.codeforall.bootcamp.javabank.persistence.TransactionException;
 import io.codeforall.bootcamp.javabank.persistence.TransactionManager;
 import io.codeforall.bootcamp.javabank.persistence.dao.AccountDao;
@@ -147,7 +147,8 @@ public class AccountServiceImplTest {
         double amount = 100.5;
         Account fakeAccount = mock(Account.class);
         when(accountDao.findById(fakeId)).thenReturn(fakeAccount);
-        when(accountDao.findById(fakeId).canWithdraw()).thenReturn(true);
+
+        when(fakeAccount.canWithdraw()).thenReturn(true);
 
         // exercise
         accountService.withdraw(fakeId, amount);

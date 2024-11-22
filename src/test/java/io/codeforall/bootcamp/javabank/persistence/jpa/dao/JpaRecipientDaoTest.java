@@ -1,6 +1,6 @@
 package io.codeforall.bootcamp.javabank.persistence.jpa.dao;
 
-import io.codeforall.bootcamp.javabank.model.Recipient;
+import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
 import io.codeforall.bootcamp.javabank.persistence.TransactionException;
 import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaRecipientDao;
 import io.codeforall.bootcamp.javabank.persistence.jpa.JpaSessionManager;
@@ -28,9 +28,11 @@ public class JpaRecipientDaoTest {
 
     @Before
     public void setup() {
+
         sm = mock(JpaSessionManager.class);
         em = mock(EntityManager.class);
-        recipientDao = new JpaRecipientDao(sm);
+        recipientDao = new JpaRecipientDao();
+        recipientDao.setSm(sm);
 
         when(sm.getCurrentSession()).thenReturn(em);
     }

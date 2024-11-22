@@ -1,11 +1,10 @@
 package io.codeforall.bootcamp.javabank.persistence.jpa.dao;
 
-import io.codeforall.bootcamp.javabank.model.account.Account;
-import io.codeforall.bootcamp.javabank.model.account.AccountType;
-import io.codeforall.bootcamp.javabank.model.account.CheckingAccount;
-import io.codeforall.bootcamp.javabank.persistence.jpa.JpaIntegrationTestHelper;
+import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
+import io.codeforall.bootcamp.javabank.persistence.model.account.AccountType;
+import io.codeforall.bootcamp.javabank.persistence.model.account.CheckingAccount;
 import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaAccountDao;
-import org.junit.Assert;
+import io.codeforall.bootcamp.javabank.persistence.jpa.JpaIntegrationTestHelper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +23,8 @@ public class JpaAccountDaoIntegrationTest extends JpaIntegrationTestHelper {
     @Before
     public void setup() {
 
-        accountDao = new JpaAccountDao(sm);
+        accountDao = new JpaAccountDao();
+        accountDao.setSm(sm);
 
     }
 
@@ -39,8 +39,8 @@ public class JpaAccountDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         assertNotNull("Account is null", account);
-        Assert.assertEquals("Account id is wrong", id, account.getId().intValue());
-        Assert.assertEquals("Account type is wrong", AccountType.CHECKING.toString(), account.getAccountType().toString());
+        assertEquals("Account id is wrong", id, account.getId().intValue());
+        assertEquals("Account type is wrong", AccountType.CHECKING.toString(), account.getAccountType().toString());
         assertEquals("Account balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
 
     }

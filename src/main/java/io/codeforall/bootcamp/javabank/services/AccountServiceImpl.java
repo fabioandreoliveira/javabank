@@ -1,6 +1,6 @@
 package io.codeforall.bootcamp.javabank.services;
 
-import io.codeforall.bootcamp.javabank.model.account.Account;
+import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
 import io.codeforall.bootcamp.javabank.persistence.TransactionException;
 import io.codeforall.bootcamp.javabank.persistence.TransactionManager;
 import io.codeforall.bootcamp.javabank.persistence.dao.AccountDao;
@@ -65,6 +65,7 @@ public class AccountServiceImpl implements AccountService {
 
             tx.commit();
 
+
         } catch (TransactionException ex) {
 
             tx.rollback();
@@ -83,16 +84,16 @@ public class AccountServiceImpl implements AccountService {
 
             tx.beginWrite();
 
-            Optional<Account> account = Optional.ofNullable(accountDao.findById(id));
+            Optional<Account> accountOptional = Optional.ofNullable(accountDao.findById(id));
 
-            if (!account.isPresent()) {
+            if (!accountOptional.isPresent()) {
                 tx.rollback();
             }
 
-            account.orElseThrow(() -> new IllegalArgumentException("invalid account id"))
+            accountOptional.orElseThrow(() -> new IllegalArgumentException("invalid account id"))
                     .credit(amount);
 
-            accountDao.saveOrUpdate(account.get());
+            accountDao.saveOrUpdate(accountOptional.get());
 
             tx.commit();
 
@@ -112,16 +113,16 @@ public class AccountServiceImpl implements AccountService {
 
             tx.beginWrite();
 
-            Optional<Account> account = Optional.ofNullable(accountDao.findById(id));
+            Optional<Account> accountOptional = Optional.ofNullable(accountDao.findById(id));
 
-            if (!account.isPresent()) {
+            if (!accountOptional.isPresent()) {
                 tx.rollback();
             }
 
-            account.orElseThrow(() -> new IllegalArgumentException("invalid account id"))
+            accountOptional.orElseThrow(() -> new IllegalArgumentException("invalid account id"))
                     .debit(amount);
 
-            accountDao.saveOrUpdate(account.get());
+            accountDao.saveOrUpdate(accountOptional.get());
 
             tx.commit();
 
