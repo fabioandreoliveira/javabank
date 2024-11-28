@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns="http://www.springframework.org/schema/beans"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns="http://www.springframework.org/schema/beans" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <import resource="./persistence/persistence-test.xml"/>
     <import resource="./persistence/persistence-dev.xml"/>
@@ -10,9 +10,9 @@
 
     <bean id="sessionManager" class="io.codeforall.bootcamp.javabank.persistence.jpa.JpaSessionManager"/>
 
-    <bean id="transactionManager" class="io.codeforall.bootcamp.javabank.persistence.jpa.JpaTransactionManager">
+<!--    <bean id="transactionManager" class="io.codeforall.bootcamp.javabank.persistence.jpa.JpaTransactionManager">
         <property name="sm" ref="sessionManager"/>
-    </bean>
+    </bean>-->
 
     <bean id="accountDao" class="io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaAccountDao">
         <property name="sm" ref="sessionManager"/>
@@ -21,5 +21,13 @@
     <bean id="customerDao" class="io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao">
         <property name="sm" ref="sessionManager"/>
     </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emFactory"/>
+    </bean>
+
+    <!-- Activate annotation-driven transactions -->
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
 
 </beans>

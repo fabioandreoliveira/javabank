@@ -1,3 +1,4 @@
+/*
 package io.codeforall.bootcamp.javabank.persistence.jpa;
 
 import io.codeforall.bootcamp.javabank.persistence.SessionManager;
@@ -6,27 +7,33 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceUnit;
 
+*/
 /**
  * A JPA {@link SessionManager} implementation
- */
+ *//*
+
 public class JpaSessionManager implements SessionManager<EntityManager> {
 
     private EntityManagerFactory emf;
     private EntityManager em;
 
-    /**
+    */
+/**
      * Sets the entity manager factory
      *
      * @param emf the entity manager factory to set
-     */
+     *//*
+
     @PersistenceUnit
     public void setEmf(EntityManagerFactory emf) {
         this.emf = emf;
     }
 
-    /**
+    */
+/**
      * @see SessionManager#startSession()
-     */
+     *//*
+
     @Override
     public void startSession() {
 
@@ -35,9 +42,11 @@ public class JpaSessionManager implements SessionManager<EntityManager> {
         }
     }
 
-    /**
+    */
+/**
      * @see SessionManager#stopSession()
-     */
+     *//*
+
     @Override
     public void stopSession() {
 
@@ -48,12 +57,15 @@ public class JpaSessionManager implements SessionManager<EntityManager> {
         em = null;
     }
 
-    /**
+    */
+/**
      * @see SessionManager#getCurrentSession()
-     */
+     *//*
+
     @Override
     public EntityManager getCurrentSession() {
         startSession();
         return em;
     }
 }
+*/
