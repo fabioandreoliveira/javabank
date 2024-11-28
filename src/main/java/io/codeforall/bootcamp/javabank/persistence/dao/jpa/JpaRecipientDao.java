@@ -1,7 +1,7 @@
 package io.codeforall.bootcamp.javabank.persistence.dao.jpa;
 
-import io.codeforall.bootcamp.javabank.persistence.dao.RecipientDao;
 import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
+import io.codeforall.bootcamp.javabank.persistence.dao.RecipientDao;
 
 /**
  * A JPA {@link RecipientDao} implementation

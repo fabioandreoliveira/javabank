@@ -8,12 +8,10 @@
     </bean>
 
     <bean id="customerService" class="io.codeforall.bootcamp.javabank.services.CustomerServiceImpl">
-        <property name="transactionManager" ref="transactionManager"/>
         <property name="customerDao" ref="customerDao"/>
     </bean>
 
     <bean id="accountService" class="io.codeforall.bootcamp.javabank.services.AccountServiceImpl">
-        <property name="transactionManager" ref="transactionManager"/>
         <property name="accountDao" ref="accountDao"/>
     </bean>
 

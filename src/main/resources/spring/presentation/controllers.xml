@@ -13,13 +13,13 @@
         <property name="authService" ref="authService"/>
         <property name="view" ref="mainView"/>
         <property name="controllerMap">
-           <map>
-               <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).GET_BALANCE.option}" value-ref="balanceCtrl"/>
-               <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).DEPOSIT.option}" value-ref="depositCtrl"/>
-               <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).WITHDRAW.option}" value-ref="withdrawCtrl"/>
-               <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).OPEN_ACCOUNT.option}" value-ref="newAccountCtrl"/>
-               <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).LIST_RECIPIENTS.option}" value-ref="recipientsCtrl"/>
-           </map>
+            <map>
+                <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).GET_BALANCE.option}" value-ref="balanceCtrl"/>
+                <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).DEPOSIT.option}" value-ref="depositCtrl"/>
+                <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).WITHDRAW.option}" value-ref="withdrawCtrl"/>
+                <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).OPEN_ACCOUNT.option}" value-ref="newAccountCtrl"/>
+                <entry key="#{T(io.codeforall.bootcamp.javabank.view.UserOptions).LIST_RECIPIENTS.option}" value-ref="recipientsCtrl"/>
+            </map>
         </property>
     </bean>
 

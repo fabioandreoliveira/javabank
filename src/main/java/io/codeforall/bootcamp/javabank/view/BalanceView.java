@@ -1,8 +1,8 @@
 package io.codeforall.bootcamp.javabank.view;
 
-import io.codeforall.bootcamp.javabank.controller.BalanceController;
 import io.codeforall.bootcamp.javabank.persistence.model.Customer;
 import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
+import io.codeforall.bootcamp.javabank.controller.BalanceController;
 
 import java.text.DecimalFormat;
 import java.util.List;
