@@ -40,7 +40,7 @@ public class JpaAccountDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         assertNotNull("Account is null", account);
-        Assert.assertEquals("Account id is wrong", id, account.getId().intValue());
+        assertEquals("Account id is wrong", id, account.getId().intValue());
         Assert.assertEquals("Account type is wrong", AccountType.CHECKING.toString(), account.getAccountType().toString());
         assertEquals("Account balance is wrong", 100, account.getBalance(), DOUBLE_DELTA);
 

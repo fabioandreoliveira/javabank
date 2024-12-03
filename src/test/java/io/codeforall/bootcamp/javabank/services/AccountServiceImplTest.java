@@ -1,10 +1,13 @@
 package io.codeforall.bootcamp.javabank.services;
 
+import io.codeforall.bootcamp.javabank.exceptions.AccountNotFoundException;
+import io.codeforall.bootcamp.javabank.exceptions.JavaBankException;
 import io.codeforall.bootcamp.javabank.persistence.dao.AccountDao;
 import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 public class AccountServiceImplTest {
@@ -23,7 +26,24 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testDeposit() {
+    public void testGet() throws JavaBankException {
+
+        // setup
+        int fakeId = 9999;
+        Account fakeAccount = mock(Account.class);
+        when(accountDao.findById(fakeId)).thenReturn(fakeAccount);
+
+        // exercise
+        Account recipient = accountService.get(fakeId);
+
+        // verify
+        assertEquals(fakeAccount, recipient);
+
+    }
+
+
+    @Test
+    public void testDeposit() throws JavaBankException {
 
         // setup
         int fakeId = 1;
@@ -39,8 +59,8 @@ public class AccountServiceImplTest {
         verify(accountDao, times(1)).saveOrUpdate(fakeAccount);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testDepositInvalidAccount() {
+    @Test(expected = AccountNotFoundException.class)
+    public void testDepositInvalidAccount() throws JavaBankException {
 
         // setup
         when(accountDao.findById(anyInt())).thenReturn(null);
@@ -51,14 +71,13 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testWithdraw() {
+    public void testWithdraw() throws JavaBankException {
 
         // setup
         int fakeId = 1;
         double amount = 100.5;
         Account fakeAccount = mock(Account.class);
         when(accountDao.findById(fakeId)).thenReturn(fakeAccount);
-        when(fakeAccount.canWithdraw()).thenReturn(true);
 
         // exercise
         accountService.withdraw(fakeId, amount);
@@ -68,8 +87,8 @@ public class AccountServiceImplTest {
         verify(accountDao, times(1)).saveOrUpdate(fakeAccount);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testWithdrawInvalidAccount() {
+    @Test(expected = AccountNotFoundException.class)
+    public void testWithdrawInvalidAccount() throws JavaBankException {
 
         // setup
         when(accountDao.findById(anyInt())).thenReturn(null);
@@ -80,7 +99,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testTransfer() {
+    public void testTransfer() throws JavaBankException {
 
         // setup
         int fakeSrcId = 9998;
@@ -107,7 +126,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testTransferDebitNotPossible() {
+    public void testTransferDebitNotPossible() throws JavaBankException {
 
         // setup
         int fakeSrcId = 9998;
@@ -131,7 +150,7 @@ public class AccountServiceImplTest {
     }
 
     @Test
-    public void testTransferCreditNotPossible() {
+    public void testTransferCreditNotPossible() throws JavaBankException {
 
         // setup
         int fakeSrcId = 9998;
@@ -154,8 +173,8 @@ public class AccountServiceImplTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testTransferInvalidSrcAccount() {
+    @Test(expected = AccountNotFoundException.class)
+    public void testTransferInvalidSrcAccount() throws JavaBankException {
 
         // setup
         int fakeSrcId = 9998;
@@ -170,8 +189,8 @@ public class AccountServiceImplTest {
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testTransferInvalidDstAccount() {
+    @Test(expected = AccountNotFoundException.class)
+    public void testTransferInvalidDstAccount() throws JavaBankException {
 
         // setup
         int fakeSrcId = 9998;

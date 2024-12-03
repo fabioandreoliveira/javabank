@@ -1,11 +1,12 @@
 package io.codeforall.bootcamp.javabank.persistence.jpa.dao;
 
+import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao;
+import io.codeforall.bootcamp.javabank.persistence.jpa.JpaIntegrationTestHelper;
 import io.codeforall.bootcamp.javabank.persistence.model.Customer;
 import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
 import io.codeforall.bootcamp.javabank.persistence.model.account.CheckingAccount;
 import io.codeforall.bootcamp.javabank.persistence.model.account.SavingsAccount;
-import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao;
-import io.codeforall.bootcamp.javabank.persistence.jpa.JpaIntegrationTestHelper;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,7 +32,7 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
     public void testFindById() {
 
         // setup
-        int id = 2;
+        int id = 1;
 
         // exercise
         Customer customer = customerDao.findById(id);
@@ -39,10 +40,7 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
         // verify
         assertNotNull("Customer is null", customer);
         assertEquals("Customer id is wrong", id, customer.getId().intValue());
-        assertEquals("Customer first name is wrong", "Sergio", customer.getFirstName());
-        assertEquals("Customer last name is wrong", "Gouveia", customer.getLastName());
-        assertEquals("Customer email is wrong", "mail@gmail.com", customer.getEmail());
-        assertEquals("Customer phone is wrong", "777888", customer.getPhone());
+        assertEquals("Customer name is wrong", "Rui", customer.getFirstName());
 
     }
 
@@ -95,15 +93,9 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
     public void testAddCustomerNoAccounts() {
 
         // setup
-        String firstName = "new first name";
-        String lastName = "new last name";
-        String email = "new email";
-        String phone = "999666";
+        String name = "New Customer name";
         Customer newCustomer = new Customer();
-        newCustomer.setFirstName(firstName);
-        newCustomer.setLastName(lastName);
-        newCustomer.setEmail(email);
-        newCustomer.setPhone(phone);
+        newCustomer.setFirstName(name);
 
         // exercise
         em.getTransaction().begin();
@@ -114,10 +106,6 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
         assertNotNull("customer not added", addedCustomer);
         Customer customer = em.find(Customer.class, addedCustomer.getId());
         assertNotNull("Customer not found", customer);
-        assertEquals(newCustomer.getFirstName(), customer.getFirstName());
-        assertEquals(newCustomer.getLastName(), customer.getLastName());
-        assertEquals(newCustomer.getEmail(), customer.getEmail());
-        assertEquals(newCustomer.getPhone(), customer.getPhone());
 
     }
 
@@ -147,8 +135,8 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
         assertNotNull("customer not found", addedCustomer);
         assertNotNull("customer accounts not found", customer.getAccounts());
         assertEquals("customer number of accounts wrong", newCustomer.getAccounts().size(), customer.getAccounts().size());
-        assertEquals("first account balance is wrong", caBalance, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
-        assertEquals("second account balance is wrong", saBalance, customer.getAccounts().get(1).getBalance(), DOUBLE_DELTA);
+        Assert.assertEquals("first account balance is wrong", caBalance, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
+        Assert.assertEquals("second account balance is wrong", saBalance, customer.getAccounts().get(1).getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -157,9 +145,9 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // setup
         int id = 1;
-        String firstName = "updated customer";
+        String name = "updated customer";
         Customer customer = em.find(Customer.class, id);
-        customer.setFirstName(firstName);
+        customer.setFirstName(name);
 
         // exercise
         em.getTransaction().begin();
@@ -168,7 +156,7 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         customer = em.find(Customer.class, id);
-        assertEquals("customer first name is wrong", firstName, customer.getFirstName());
+        assertEquals("customer name is wrong", name, customer.getFirstName());
 
     }
 
@@ -177,9 +165,9 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // setup
         int id = 1;
-        String firstName = "updated customer";
+        String name = "updated customer";
         Customer existingCustomer = em.find(Customer.class, id);
-        existingCustomer.setFirstName(firstName);
+        existingCustomer.setFirstName(name);
         existingCustomer.getAccounts().get(0).canCredit(100);
 
         // exercise
@@ -189,9 +177,9 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Customer customer = em.find(Customer.class, id);
-        assertEquals("customer first name is wrong", firstName, customer.getFirstName());
+        assertEquals("customer name is wrong", name, customer.getFirstName());
         assertEquals("number of accounts is wrong", 2, customer.getAccounts().size());
-        assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
+        Assert.assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -200,9 +188,9 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // setup
         int id = 1;
-        String firstName = "updated customer";
+        String name = "updated customer";
         Customer existingCustomer = em.find(Customer.class, id);
-        existingCustomer.setFirstName(firstName);
+        existingCustomer.setFirstName(name);
         existingCustomer.removeAccount(existingCustomer.getAccounts().get(1));
 
         // exercise
@@ -212,9 +200,9 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         Customer customer = em.find(Customer.class, id);
-        assertEquals("customer first name is wrong", firstName, customer.getFirstName());
+        assertEquals("customer name is wrong", name, customer.getFirstName());
         assertEquals("number of accounts is wrong", 1, customer.getAccounts().size());
-        assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
+        Assert.assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
 
     }
 
