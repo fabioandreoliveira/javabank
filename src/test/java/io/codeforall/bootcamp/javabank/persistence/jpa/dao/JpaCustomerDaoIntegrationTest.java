@@ -1,12 +1,11 @@
 package io.codeforall.bootcamp.javabank.persistence.jpa.dao;
 
-import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao;
 import io.codeforall.bootcamp.javabank.persistence.jpa.JpaIntegrationTestHelper;
+import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaCustomerDao;
 import io.codeforall.bootcamp.javabank.persistence.model.Customer;
 import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
 import io.codeforall.bootcamp.javabank.persistence.model.account.CheckingAccount;
 import io.codeforall.bootcamp.javabank.persistence.model.account.SavingsAccount;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -135,8 +134,8 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
         assertNotNull("customer not found", addedCustomer);
         assertNotNull("customer accounts not found", customer.getAccounts());
         assertEquals("customer number of accounts wrong", newCustomer.getAccounts().size(), customer.getAccounts().size());
-        Assert.assertEquals("first account balance is wrong", caBalance, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
-        Assert.assertEquals("second account balance is wrong", saBalance, customer.getAccounts().get(1).getBalance(), DOUBLE_DELTA);
+        assertEquals("first account balance is wrong", caBalance, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
+        assertEquals("second account balance is wrong", saBalance, customer.getAccounts().get(1).getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -179,7 +178,7 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
         Customer customer = em.find(Customer.class, id);
         assertEquals("customer name is wrong", name, customer.getFirstName());
         assertEquals("number of accounts is wrong", 2, customer.getAccounts().size());
-        Assert.assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
+        assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
 
     }
 
@@ -202,7 +201,7 @@ public class JpaCustomerDaoIntegrationTest extends JpaIntegrationTestHelper {
         Customer customer = em.find(Customer.class, id);
         assertEquals("customer name is wrong", name, customer.getFirstName());
         assertEquals("number of accounts is wrong", 1, customer.getAccounts().size());
-        Assert.assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
+        assertEquals("account balance is wrong", 100, customer.getAccounts().get(0).getBalance(), DOUBLE_DELTA);
 
     }
 

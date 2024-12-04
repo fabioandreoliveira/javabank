@@ -1,7 +1,7 @@
 package io.codeforall.bootcamp.javabank.persistence.jpa.dao;
 
-import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaRecipientDao;
 import io.codeforall.bootcamp.javabank.persistence.jpa.JpaIntegrationTestHelper;
+import io.codeforall.bootcamp.javabank.persistence.dao.jpa.JpaRecipientDao;
 import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +14,7 @@ import static org.junit.Assert.*;
 public class JpaRecipientDaoIntegrationTest extends JpaIntegrationTestHelper {
 
     private final static Integer INVALID_ID = 9999;
+    private final static double DOUBLE_DELTA = 0.1;
 
     private JpaRecipientDao recipientDao;
 
@@ -122,7 +123,7 @@ public class JpaRecipientDaoIntegrationTest extends JpaIntegrationTestHelper {
 
         // verify
         recipient = em.find(Recipient.class, id);
-        assertEquals("Recipient account number is wrong", 100, (int) recipient.getAccountNumber());
+        assertEquals("Recipient account number is wrong", 100, recipient.getAccountNumber(), DOUBLE_DELTA);
 
     }
 
@@ -151,6 +152,4 @@ public class JpaRecipientDaoIntegrationTest extends JpaIntegrationTestHelper {
         recipientDao.delete(INVALID_ID);
         em.getTransaction().commit();
     }
-
-
 }

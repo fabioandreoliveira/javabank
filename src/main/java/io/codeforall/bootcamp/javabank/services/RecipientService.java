@@ -1,6 +1,5 @@
 package io.codeforall.bootcamp.javabank.services;
 
-import io.codeforall.bootcamp.javabank.exceptions.RecipientNotFoundException;
 import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
 
 /**
@@ -13,7 +12,6 @@ public interface RecipientService {
      *
      * @param id the recipient id
      * @return the recipient
-     * @throws RecipientNotFoundException if recipient doesn't exist
      */
-    Recipient get(Integer id) throws RecipientNotFoundException;
+    Recipient get(Integer id);
 }

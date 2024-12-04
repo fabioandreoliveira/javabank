@@ -1,6 +1,5 @@
 package io.codeforall.bootcamp.javabank.services;
 
-import io.codeforall.bootcamp.javabank.exceptions.JavaBankException;
 import io.codeforall.bootcamp.javabank.persistence.dao.RecipientDao;
 import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
 import org.junit.Before;
@@ -25,7 +24,7 @@ public class RecipientServiceImplTest {
     }
 
     @Test
-    public void testGet() throws JavaBankException {
+    public void testGet() {
 
         // setup
         int fakeId = 9999;

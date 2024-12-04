@@ -1,4 +1,4 @@
-package io.codeforall.bootcamp.javabank.controller;
+package io.codeforall.bootcamp.javabank.controller.web;
 
 import org.junit.Before;
 import org.junit.Test;

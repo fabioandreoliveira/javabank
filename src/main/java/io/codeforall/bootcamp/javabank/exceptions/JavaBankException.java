@@ -5,7 +5,7 @@ package io.codeforall.bootcamp.javabank.exceptions;
  *
  * @see Exception
  */
-public class JavaBankException extends RuntimeException {
+public class JavaBankException extends Exception {
 
     /**
      * @see Exception#Exception(String)

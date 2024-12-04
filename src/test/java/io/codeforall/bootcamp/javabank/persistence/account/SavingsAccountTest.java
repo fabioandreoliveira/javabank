@@ -1,5 +1,6 @@
-package io.codeforall.bootcamp.javabank.persistence.model.account;
+package io.codeforall.bootcamp.javabank.persistence.account;
 
+import io.codeforall.bootcamp.javabank.persistence.model.account.SavingsAccount;
 import org.junit.Before;
 import org.junit.Test;
 

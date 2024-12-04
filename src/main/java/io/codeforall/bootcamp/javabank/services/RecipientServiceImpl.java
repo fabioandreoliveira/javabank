@@ -1,6 +1,5 @@
 package io.codeforall.bootcamp.javabank.services;
 
-import io.codeforall.bootcamp.javabank.exceptions.RecipientNotFoundException;
 import io.codeforall.bootcamp.javabank.persistence.dao.RecipientDao;
 import io.codeforall.bootcamp.javabank.persistence.model.Recipient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +27,7 @@ public class RecipientServiceImpl implements RecipientService {
      * @see RecipientService#get(Integer)
      */
     @Override
-    public Recipient get(Integer id) throws RecipientNotFoundException {
-
-        Recipient recipient = recipientDao.findById(id);
-
-        if (recipient == null) {
-            throw new RecipientNotFoundException();
-        }
-
-        return recipient;
+    public Recipient get(Integer id) {
+        return recipientDao.findById(id);
     }
 }
