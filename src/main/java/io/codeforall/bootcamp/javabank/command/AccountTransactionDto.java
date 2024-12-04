@@ -2,9 +2,9 @@ package io.codeforall.bootcamp.javabank.command;
 
 import io.codeforall.bootcamp.javabank.persistence.model.account.Account;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 
 /**
  * The {@link Account} transactions data transfer object

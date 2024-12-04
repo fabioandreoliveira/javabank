@@ -1,8 +1,6 @@
 package io.codeforall.bootcamp.javabank.controller.web;
 
 import io.codeforall.bootcamp.javabank.exceptions.JavaBankException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +8,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 /**
@@ -30,7 +28,6 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(value = JavaBankException.class)
     public ModelAndView handleClientErrors(HttpServletRequest req, JavaBankException ex) {
 
-        logException(ex);
         return handleError(HttpStatus.BAD_REQUEST, req, ex);
     }
 
@@ -45,7 +42,6 @@ public class GlobalControllerExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     public ModelAndView handleServerErrors(HttpServletRequest req, Exception ex) {
 
-        logException(ex);
         return handleError(HttpStatus.INTERNAL_SERVER_ERROR, req, ex);
     }
 
@@ -63,15 +59,5 @@ public class GlobalControllerExceptionHandler {
         return model;
     }
 
-    private void logException(Exception ex) {
 
-        String errorOrigin = ex instanceof JavaBankException ? "Client" : "Server";
-
-        String throwingClassName = ex.getStackTrace()[0].getClassName();
-        String throwingMethodName = ex.getStackTrace()[0].getMethodName();
-
-
-        Logger logger = LogManager.getLogger(throwingClassName);
-        logger.error(errorOrigin + " error on " + throwingMethodName + "() - " + ex.getMessage());
-    }
 }

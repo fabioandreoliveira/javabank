@@ -22,7 +22,7 @@
 
     <context-param>
         <param-name>spring.profiles.active</param-name>
-        <param-value>dev</param-value>
+        <param-value>prod</param-value>
     </context-param>
 
     <!--
@@ -33,10 +33,6 @@
         <param-name>isLog4jAutoInitializationDisabled</param-name>
         <param-value>true</param-value>
     </context-param>
-
-    <listener>
-        <listener-class>io.codeforall.bootcamp.javabank.Log4jWebConfig</listener-class>
-    </listener>
 
     <!--
         This is useful because current browsers typically do not

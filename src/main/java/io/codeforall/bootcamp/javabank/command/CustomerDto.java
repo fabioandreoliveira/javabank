@@ -2,7 +2,7 @@ package io.codeforall.bootcamp.javabank.command;
 
 import io.codeforall.bootcamp.javabank.persistence.model.Customer;
 
-import javax.validation.constraints.*;
+import jakarta.validation.constraints.*;
 
 /**
  * The {@link Customer} data transfer object

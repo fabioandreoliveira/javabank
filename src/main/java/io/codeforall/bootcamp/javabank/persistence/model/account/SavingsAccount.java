@@ -1,6 +1,6 @@
 package io.codeforall.bootcamp.javabank.persistence.model.account;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * A savings account model entity which requires a minimum balance

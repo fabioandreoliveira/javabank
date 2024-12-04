@@ -3,7 +3,7 @@ package io.codeforall.bootcamp.javabank.persistence.model.account;
 import io.codeforall.bootcamp.javabank.persistence.model.AbstractModel;
 import io.codeforall.bootcamp.javabank.persistence.model.Customer;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * A generic account model entity to be used as a base for concrete types of accounts
