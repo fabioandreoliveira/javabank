@@ -140,10 +140,15 @@ public class CustomerServiceImpl implements CustomerService {
         return new ArrayList<>(customer.getRecipients());
     }
 
+    @Override
+    public void addRecipient(Integer id, Recipient recipient) throws CustomerNotFoundException, AccountNotFoundException {
+
+    }
+
     /**
      * @see CustomerService#addRecipient(Integer, Recipient)
      */
-    @Transactional
+    /*@Transactional
     @Override
     public void addRecipient(Integer id, Recipient recipient) throws CustomerNotFoundException, AccountNotFoundException {
 
@@ -158,7 +163,7 @@ public class CustomerServiceImpl implements CustomerService {
         customer.addRecipient(recipient);
         customerDao.saveOrUpdate(customer);
 
-    }
+    }*/
 
     /**
      * @see CustomerService#removeRecipient(Integer, Integer)
@@ -180,12 +185,16 @@ public class CustomerServiceImpl implements CustomerService {
         customer.removeRecipient(recipient);
         customerDao.saveOrUpdate(customer);
     }
+}
+
+    /*@Override
+    public void deleteAccount(Integer id, Integer accountId) {
+
+    }
 
     private Set<Integer> getAccountIds(Customer customer) {
         List<Account> accounts = customer.getAccounts();
 
         return accounts.stream()
                 .map(AbstractModel::getId)
-                .collect(Collectors.toSet());
-    }
-}
+                .collect(Collectors.toSet());*/
