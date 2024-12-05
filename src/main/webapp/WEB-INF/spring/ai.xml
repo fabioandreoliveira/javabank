@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="openAiApi" class="org.springframework.ai.openai.api.OpenAiApi">
+        <constructor-arg value="${ai.api_key}" />
+    </bean>
+
+    <bean id="openAiChatOptions" class="io.codeforall.bootcamp.javabank.factories.OpenAiChatOptionsFactory">
+        <property name="model" value="${ai.chat.model}"/>
+        <property name="temperature" value="${ai.temperature}" />
+    </bean>
+
+    <bean id="chatClient" class="org.springframework.ai.openai.OpenAiChatClient">
+        <constructor-arg ref="openAiApi" />
+        <constructor-arg ref="openAiChatOptions" />
+    </bean>
+
+</beans>

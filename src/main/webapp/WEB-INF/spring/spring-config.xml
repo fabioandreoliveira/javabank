@@ -20,5 +20,6 @@
 
     <import resource="persistence.xml"/>
     <import resource="presentation.xml"/>
+    <import resource="ai.xml"/>
 
 </beans>
