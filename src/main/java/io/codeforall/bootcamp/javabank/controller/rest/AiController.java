@@ -5,10 +5,7 @@ import org.springframework.ai.chat.Generation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/ai")
@@ -24,5 +21,9 @@ public class AiController {
     @RequestMapping(method = RequestMethod.POST, path = "/joke")
     public ResponseEntity<String> joke() {
         return new ResponseEntity<>(aiService.joke().getOutput().getContent(), HttpStatus.OK);
+    }
+    @RequestMapping(method = RequestMethod.POST, path = "/rag")
+    public ResponseEntity<String> info(@RequestBody String question) {
+        return new ResponseEntity<>(aiService.ragRequest(question).getOutput().getContent(), HttpStatus.OK);
     }
 }

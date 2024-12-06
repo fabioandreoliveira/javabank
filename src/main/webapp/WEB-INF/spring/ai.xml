@@ -17,4 +17,12 @@
         <constructor-arg ref="openAiChatOptions" />
     </bean>
 
+    <bean id="embeddingClient" class="org.springframework.ai.openai.OpenAiEmbeddingClient">
+        <constructor-arg ref="openAiApi" />
+    </bean>
+
+    <bean id="vectorStore" class="org.springframework.ai.vectorstore.SimpleVectorStore">
+        <constructor-arg ref="embeddingClient" />
+    </bean>
+
 </beans>
